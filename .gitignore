@@ -1,0 +1,17 @@
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Python bytecode/cache
+__pycache__/
+*.py[cod]
+
+# macOS system files
+.DS_Store
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Qiskit/IBM local config files (if any)
+qiskit-ibm-runtime.log
