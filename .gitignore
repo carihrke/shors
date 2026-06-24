@@ -15,3 +15,7 @@ __pycache__/
 
 # Qiskit/IBM local config files (if any)
 qiskit-ibm-runtime.log
+
+# generated charts
+comprehensive_scaling_chart.png
+quantum_plot_A_measurement.png

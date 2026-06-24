@@ -1,14 +1,23 @@
+# RSA system for understanding and exploring how RSA works.
+#
+# Authors: Carson Ihrke and Will Geiger
+# Date: June 24 (modified)
+
 import random
 
-# Helper: Euclidean Algorithm to find greatest common divisor
+# Euclidean Algorithm to find greatest common divisor
+# @params: desired values to calculate gcd (a, b)
+# @return: gcd (a)
 def gcd(a, b):
     while b != 0:
         a, b = b, a % b
     return a
 
-# Helper: Extended Euclidean Algorithm for modular inverse
+# Extended Euclidean Algorithm for modular inverse
+# @params: public key (e), euler's totient value (phi)
+# @return: multiplicative inverse (d)
 def multiplicative_inverse(e, phi):
-    d = 0
+
     x1, x2 = 0, 1
     y1, y2 = 1, 0
     temp_phi = phi
@@ -28,7 +37,9 @@ def multiplicative_inverse(e, phi):
     if temp_phi == 1:
         return y2 % phi
 
-# 1. Key Generation
+# Key Generation for RSA
+# @params: prime composites of N (p, q)
+# @return: public key pair (e, n), private key pair (d, n)
 def generate_keypair(p, q):
     n = p * q
     phi = (p - 1) * (q - 1)
@@ -46,21 +57,25 @@ def generate_keypair(p, q):
     # Public key is (e, n), Private key is (d, n)
     return ((e, n), (d, n))
 
-# 2. Encryption
+# Encryption via RSA
+# @params: public key (public_key), input to encrypt (plaintext)
+# @return: encrypted input (cipher)
 def encrypt(public_key, plaintext):
     e, n = public_key
     # Convert chars to integers and compute c = m^e mod n
     cipher = [pow(ord(char), e, n) for char in plaintext]
     return cipher
 
-# 3. Decryption
+# Decryption via RSA
+# @params: private key (private_key), input to decrypt (ciphertext)
+# @return: decrypted input (plain)
 def decrypt(private_key, ciphertext):
     d, n = private_key
     # Compute m = c^d mod n and convert back to chars
     plain = [chr(pow(char, d, n)) for char in ciphertext]
     return ''.join(plain)
 
-# --- Execution ---
+# Execution on simple values of p and q
 p = 61
 q = 53
 public, private = generate_keypair(p, q)
