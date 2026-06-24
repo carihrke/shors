@@ -11,4 +11,4 @@ By charting execution times across scaling key sizes, this study maps the "compu
 
 ---
 
-Project detailed thouroughly in paper (report.pdf).
+Project detailed thoroughly in paper (report.pdf).
